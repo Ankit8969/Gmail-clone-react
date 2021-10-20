@@ -1,0 +1,99 @@
+.side-navbar {
+  width: 70px;
+  box-shadow: 0 20px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding-left: 20px;
+}
+
+.side-navbar .compose-btn {
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.side-navbar:hover .compose-btn {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  justify-content: center;
+}
+
+.side-navbar span {
+  visibility: hidden;
+}
+
+.side-navbar:hover {
+  width: 250px;
+}
+.side-navbar:hover span {
+  visibility: visible;
+}
+
+.side-navbar .btn-group {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.side-navbar i {
+  color: #767676;
+}
+
+.compose-btn {
+  margin-top: 10px;
+  height: 50px;
+  width: 150px;
+
+  display: flex;
+  align-items: center;
+}
+
+.compose-btn span {
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.side-navbar .side-bar-btn-group1 {
+  margin-top: 20px;
+}
+
+.side-navbar .side-bar-btn-group1 li {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  padding-left: 10px;
+  cursor: pointer;
+}
+.side-navbar .side-bar-btn-group1 li span {
+  margin-left: 15px;
+  font-weight: 500;
+}
+.side-bar-btn-group1 li:hover {
+  background-color: #f1f3f4;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.side-bar-btn-group1 .hangout {
+  display: flex;
+  align-items: center;
+}
+.side-bar-btn-group1 .hangout img {
+  border-radius: 100%;
+}
+
+.hangout {
+  margin-top: 20px;
+}
+
+.hangout div {
+  width: 10px;
+  height: 10px;
+  border: 1px solid green;
+  background-color: green;
+  border-radius: 100%;
+  position: relative;
+  left: 45px;
+  top: 16px;
+}
