@@ -6,14 +6,14 @@ import { HandleDelete } from "./App";
 
 const Nabar = () => {
   const helper = useContext(HandleDelete);
-  const { setcurrentActive } = helper;
+  const { dispatch, state } = helper;
   return (
     <React.Fragment>
       <nav>
-        <SetNav setcurrentActive={setcurrentActive} />
+        <SetNav dispatch={dispatch} />
       </nav>
       <div className="final-design">
-        <SideNavbar setcurrentActive={setcurrentActive} />
+        <SideNavbar dispatch={dispatch} state={state} />
         <div style={{ height: "100vh", overflowY: "scroll" }}>
           <PrintList />
         </div>

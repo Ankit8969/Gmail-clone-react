@@ -1,11 +1,17 @@
 import React from "react";
 
-const SetNav = ({ setcurrentActive }) => {
+const SetNav = ({ dispatch }) => {
   return (
     <React.Fragment>
       <div
         className="nav-items primary"
-        onClick={() => setcurrentActive("primary")}
+        // onClick={() => setcurrentActive("primary")}
+        onClick={() =>
+          dispatch({
+            type: "setcurrentActive",
+            payload: { currentActive: "primary" },
+          })
+        }
       >
         <div className="nav-img">
           <i className="fas fa-portrait"></i>
@@ -14,7 +20,13 @@ const SetNav = ({ setcurrentActive }) => {
       </div>
       <div
         className="nav-items social"
-        onClick={() => setcurrentActive("social")}
+        //onClick={() => setcurrentActive("social")}
+        onClick={() =>
+          dispatch({
+            type: "setcurrentActive",
+            payload: { currentActive: "social" },
+          })
+        }
       >
         <div className="nav-img">
           <i className="fas fa-user-friends"></i>
@@ -23,7 +35,13 @@ const SetNav = ({ setcurrentActive }) => {
       </div>
       <div
         className="nav-items promotions"
-        onClick={() => setcurrentActive("promotions")}
+        //onClick={() => setcurrentActive("promotions")}
+        onClick={() =>
+          dispatch({
+            type: "setcurrentActive",
+            payload: { currentActive: "promotions" },
+          })
+        }
       >
         <div className="nav-img">
           <i className="fas fa-key"></i>

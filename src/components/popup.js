@@ -5,35 +5,36 @@ import { HandleDelete } from "./App";
 const PopUp = () => {
   const Msgref = useRef();
   const helper = useContext(HandleDelete);
-  const {
-    mail,
-    setMail,
-    subject,
-    setSubject,
-    content,
-    setContent,
-    showPopUp,
-    setShowPopup,
-    sentList,
-    setSentList,
-  } = helper;
+  const { state, dispatch } = helper;
   const [show, setShow] = useState("true");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowPopup(!showPopUp);
-    setContent(Msgref.current.innerText);
+    // setShowPopup(!showPopUp);
+    // setContent(Msgref.current.innerText);
 
+    dispatch({
+      type: "setContent",
+      payload: { setContent: Msgref.current.innerText },
+    });
+
+    dispatch({
+      type: "setShowPopup",
+      payload: { showPopUp: !state.showPopUp },
+    });
     const obj = {
-      id: sentList.length,
+      id: state.sentList.length,
       company: "Sender",
-      Title: subject,
-      dummy: content,
+      Title: state.subject,
+      dummy: state.content,
     };
-    const list = sentList;
-    list.push(obj);
-    setSentList(list);
-    console.log(list);
+    // const list = sentList;
+    // list.push(obj);
+    // setSentList(list);
+    dispatch({
+      type: "setSentList",
+      payload: { setSentList: [...state.sentList, obj] },
+    });
   };
 
   return (
@@ -41,7 +42,15 @@ const PopUp = () => {
       <div className="popup-header">
         <span>New Message</span>
         <div className="popup-btn">
-          <i className="fas fa-times" onClick={() => setShowPopup(!showPopUp)}></i>
+          <i
+            className="fas fa-times"
+            onClick={() =>
+              dispatch({
+                type: "setShowPopup",
+                payload: { setShowPopup: !state.showPopUp },
+              })
+            }
+          ></i>
           <i className="fas fa-expand-alt"></i>
           <i className="fas fa-minus" onClick={() => setShow(!show)}></i>
         </div>
@@ -54,15 +63,25 @@ const PopUp = () => {
               placeholder="Recipients"
               autoFocus
               required
-              value={mail}
-              onChange={(e) => setMail(e.target.value)}
+              value={state.mail}
+              onChange={(e) =>
+                dispatch({
+                  type: "setMail",
+                  payload: { setMail: e.target.value },
+                })
+              }
             />
             <input
               type="text"
               placeholder="Subject"
               required
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
+              value={state.subject}
+              onChange={(e) =>
+                dispatch({
+                  type: "setSubject",
+                  payload: { setSubject: e.target.value },
+                })
+              }
             />
             <div
               className="popup-message"

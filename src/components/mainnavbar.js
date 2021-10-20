@@ -5,7 +5,7 @@ import { HandleDelete } from "./App";
 
 const MainNavbar = () => {
   const helper = useContext(HandleDelete);
-  const { searchItem, setSearchItem } = helper;
+  const { state, dispatch } = helper;
   return (
     <section className="navbar">
       <div className="logo-container">
@@ -34,18 +34,23 @@ const MainNavbar = () => {
           <input
             type="text"
             placeholder="Search mail"
-            value={searchItem}
-            onChange={(e) => setSearchItem(e.target.value)}
+            value={state.searchItem}
+            onChange={(e) =>
+              dispatch({
+                type: "setSearchItem",
+                payload: { searchItem: e.target.value },
+              })
+            }
           />
         </div>
-        {searchItem.length > 0 ? <SearchPage /> : ""}
+        {state.searchItem.length > 0 ? <SearchPage /> : ""}
         <div
           className="search-setting ui icon"
           data-tooltip="Show search options"
           data-position="bottom left"
           data-inverted=""
         >
-          <i class="fas fa-sliders-h" />
+          <i className="fas fa-sliders-h" />
         </div>
       </div>
 

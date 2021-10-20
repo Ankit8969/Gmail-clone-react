@@ -5,10 +5,10 @@ import { HandleDelete } from "./App";
 
 const PrintList = () => {
   const helper = useContext(HandleDelete);
-  const { currentList } = helper;
+  const { state } = helper;
   return (
     <React.Fragment>
-      {currentList.map((item) => (
+      {state.currentList.map((item) => (
         <SingleLine key={item.id} item={item} />
       ))}
     </React.Fragment>

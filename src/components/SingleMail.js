@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../sidebar.css";
 
-const SingleMail = ({ currentList, setcurrentActive }) => {
+const SingleMail = ({ state, dispatch }) => {
   const { type, id } = useParams();
-  const ind = currentList.findIndex((item) => item.id === parseInt(id));
+  const ind = state.currentList.findIndex((item) => item.id === parseInt(id));
   const [left, setLeft] = useState(ind);
   const [right, setRight] = useState(ind);
 
-  const strLeft = "/" + type + "/" + currentList[left].id;
-  const strRight = "/" + type + "/" + currentList[right].id;
+  const strLeft = "/" + type + "/" + state.currentList[left].id;
+  const strRight = "/" + type + "/" + state.currentList[right].id;
 
   const handleRoute = () => {
     if (ind === 0) setLeft(ind);
     else setLeft(ind - 1);
 
-    if (ind === currentList.length - 1) setRight(ind);
+    if (ind === state.currentList.length - 1) setRight(ind);
     else setRight(ind + 1);
   };
 
@@ -73,7 +73,7 @@ const SingleMail = ({ currentList, setcurrentActive }) => {
         </div>
         <section>
           <div className="mail-heading">
-            <span className="title">{currentList[ind].company}</span>
+            <span className="title">{state.currentList[ind].company}</span>
             <span>
               <div className="content-btn-group">
                 <div>inbox</div>
@@ -100,11 +100,13 @@ const SingleMail = ({ currentList, setcurrentActive }) => {
               <div className="user-mail-header">
                 <div className="user-mail-header1">
                   <span>
-                    <b> {currentList[ind].company} </b>
+                    <b> {state.currentList[ind].company} </b>
                   </span>
                   <span>
                     {" "}
-                    &lt;notifications@{currentList[ind].company}.com&gt;{" "}
+                    &lt;notifications@{
+                      state.currentList[ind].company
+                    }.com&gt;{" "}
                   </span>
                 </div>
                 <div className="user-mail-header2">
@@ -123,16 +125,18 @@ const SingleMail = ({ currentList, setcurrentActive }) => {
                 </div>
               </div>
               <div className="inner-main-content">
-                <p style={{ fontSize: "0.9rem" }}>{currentList[ind].dummy}</p>
+                <p style={{ fontSize: "0.9rem" }}>
+                  {state.currentList[ind].dummy}
+                </p>
               </div>
             </div>
           </div>
           <div className="btn-group-reply">
             <button>
-              <i class="fas fa-reply"></i>Reply
+              <i className="fas fa-reply"></i>Reply
             </button>
             <button>
-              <i class="fas fa-arrow-right"></i> Forward
+              <i className="fas fa-arrow-right"></i> Forward
             </button>
           </div>
         </section>

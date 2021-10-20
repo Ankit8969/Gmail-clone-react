@@ -4,12 +4,14 @@ import { HandleDelete } from "./App";
 
 const SearchPage = () => {
   const helper = useContext(HandleDelete);
-  const { currentList, searchItem } = helper;
+  const { state } = helper;
 
-  if (searchItem.toLowerCase().trim().length === 0) return "";
-  const arr = currentList.filter(
+  if (state.searchItem.toLowerCase().trim().length === 0) return "";
+  const arr = state.currentList.filter(
     (item) =>
-      item.company.toLowerCase().search(searchItem.toLowerCase().trim()) !== -1
+      item.company
+        .toLowerCase()
+        .search(state.searchItem.toLowerCase().trim()) !== -1
   );
   if (arr.length === 0) return "";
   return (

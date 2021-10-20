@@ -4,14 +4,7 @@ import { HandleDelete } from "./App";
 
 const SingleLine = ({ item }) => {
   const helper = useContext(HandleDelete);
-  const {
-    currentActive,
-    HandleSnoozeList,
-    HandleList,
-    starredList,
-    setStarredList,
-    setSearchItem,
-  } = helper;
+  const { state, dispatch, HandleSnoozeList, HandleList } = helper;
 
   const [show, setShow] = useState(false);
   const [background, setBackground] = useState("white");
@@ -29,9 +22,13 @@ const SingleLine = ({ item }) => {
 
     starColor === "#767676" ? setStarColor("#113CFC") : setStarColor("#767676");
 
-    const list = starredList;
-    list.push(item);
-    setStarredList(list);
+    // const list = starredList;
+    // list.push(item);
+    // setStarredList(list);
+    dispatch({
+      type: "setStarredList",
+      payload: { starredList: [...state.starredList, item] },
+    });
   };
 
   const { company, Title, dummy } = item;
@@ -51,8 +48,16 @@ const SingleLine = ({ item }) => {
           </div>
           <p className="company">{company}</p>
         </div>
-        <Link to={`/${currentActive}/${item.id}`} style={{ all: "unset" }}>
-          <div className="mail-text" onClick={() => setSearchItem("")}>
+        <Link
+          to={`/${state.currentActive}/${item.id}`}
+          style={{ all: "unset" }}
+        >
+          <div
+            className="mail-text"
+            onClick={() =>
+              dispatch({ type: "setSearchItem", payload: { searchItem: "" } })
+            }
+          >
             <span className="mail-text-title">{Title}</span>
             <span className="mail-text-dummy">{dummy}</span>
           </div>
